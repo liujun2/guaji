@@ -8,13 +8,13 @@ path = '/usr/local/bin/chromedriver' #your chromedriver path
 sys.path.append(path)
 
 def conform_dialog():
-    elements = driver.find_elements_by_class_name('layui-layer-btn0')
-    if len(elements) == 0:
+    elements_confor_dialog = driver.find_elements_by_class_name('layui-layer-btn0')
+    if len(elements_confor_dialog) == 0:
         print('no dialog')
     else:
         print('conform')
-        for ele in elements:
-            ele.click()
+        for ele_dialog in elements_confor_dialog:
+            ele_dialog.click()
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()
@@ -27,9 +27,9 @@ if __name__ == '__main__':
         conform_dialog()
         time.sleep(1)
         elements = driver.find_elements_by_class_name('change_chapter')
-        # print(len(elements))
+        print(len(elements))
         elements_un_lock = list(filter(lambda element : int(element.get_attribute('data-lock')) == 0, elements))
-        # print(len(elements_un_lock))
+        print(len(elements_un_lock))
         if len(elements_un_lock) != num_course_unlock:
             num_course_unlock = len(elements_un_lock)
             elements_un_lock[len(elements_un_lock) - 1].click()
