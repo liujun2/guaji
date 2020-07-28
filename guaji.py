@@ -13,8 +13,12 @@ def conform_dialog():
         print('no dialog')
     else:
         print('conform')
-        for ele_dialog in elements_confor_dialog:
-            ele_dialog.click()
+        try:
+            for ele_dialog in elements_confor_dialog:
+                ele_dialog.click()
+        except Exception as e:
+            print(e)
+
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()
@@ -28,9 +32,10 @@ if __name__ == '__main__':
         time.sleep(1)
         elements = driver.find_elements_by_class_name('change_chapter')
         print(len(elements))
-        elements_un_lock = list(filter(lambda element : int(element.get_attribute('data-lock')) == 0, elements))
-        print(len(elements_un_lock))
-        if len(elements_un_lock) != num_course_unlock:
-            num_course_unlock = len(elements_un_lock)
-            elements_un_lock[len(elements_un_lock) - 1].click()
+        if len(elements) > 0:
+            elements_un_lock = list(filter(lambda element : int(element.get_attribute('data-lock')) == 0, elements))
+            print(len(elements_un_lock))
+            if len(elements_un_lock) != num_course_unlock:
+                num_course_unlock = len(elements_un_lock)
+                elements_un_lock[len(elements_un_lock) - 1].click()
 
