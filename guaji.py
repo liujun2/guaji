@@ -2,6 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import random
 
 import sys
 path = '/usr/local/bin/chromedriver' #your chromedriver path
@@ -27,9 +28,9 @@ if __name__ == '__main__':
     num_course_unlock = 0
 
     while True:
-        time.sleep(1)
+        time.sleep(random.randint(20,120))
         conform_dialog()
-        time.sleep(1)
+        time.sleep(random.randint(20,120))
         elements = driver.find_elements_by_class_name('change_chapter')
         print(len(elements))
         if len(elements) > 0:
